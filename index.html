@@ -8,6 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet"> -->
     <link href="docs.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -71,6 +72,14 @@
                 </ul>
               </li>
               <li>
+                <a href="#menu-users">Users</a>
+                <ul class="nav">
+                  <li><a href="#menu-user-stacks">Get Running Stacks</a></li>
+                  <li><a href="#menu-user-nodes">Get Running Nodes</a></li>
+                  <li><a href="#menu-user-metrics">Get Metrics</a></li>
+                </ul>
+              </li>
+              <li>
                 <a href="#menu-stacks">Stacks</a>
                 <ul class="nav">
                   <li><a href="#menu-stack-create">Create Stack</a></li>
@@ -97,10 +106,46 @@
           <p id="menu-endpoint">API Endpoint:</p>
           <h4></h4>
           <code>http://api.mocloud.mobingi.com/v1</code>
-          <div class="bs-callout bs-callout-danger" id="menu-signing-requests">
+          <div class="bs-callout bs-callout-info" id="menu-signing-requests">
             <h4>Signing Requests</h4>
-            <p>Both <code>bootstrap.js</code> and <code>bootstrap.min.js</code> contain all plugins in a single file. Include only one.</p>
+            <p> Description about singing requests..</p>
           </div>
+        </div>
+
+        <div class="bs-docs-section">
+          <h1 id="menu-users" class="page-header">Users</h1>
+          <h3 id="menu-user-stacks">Get Running Stacks</h3>
+          <p>Get user's total running stacks</p>
+          GET <code>/user/{uid}/get/stacks</code>
+          <p></p>
+          <p>Example return:</p>
+          <pre><code>{
+    "stacks":"2"
+}</code></pre>
+          <h3 id="menu-user-nodes">Get Running Nodes</h3>
+          <p>Get user's total running server nodes</p>
+          GET <code>/user/{uid}/get/nodes</code>
+          <p></p>
+          <p>Example return:</p>
+          <pre><code>{
+    "nodes":"6"
+}</code></pre>
+          <h3 id="menu-user-metrics">Get Metrics</h3>
+          <p>Get user's total running stacks, nodes & metrics</p>
+          GET <code>/user/{uid}/get/metrics</code>
+          <p></p>
+          <p>Example return:</p>
+          <pre><code>{
+    "stacks":"2",
+    "nodes":"6",
+    "cpuavg":"0.11",        //percentage %
+    "latency":"0.0000",     //seconds
+    "maxnetworkin":"3",     //bytes
+    "maxnetworkout":"3",    //bytes
+    "sumrequests":"0",
+    "statuscheckfailed":"0"
+}</code></pre>
+
         </div>
 
         <div class="bs-docs-section">
@@ -141,6 +186,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  // <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
   <script src="docs.min.js"></script>
 
   </body>
