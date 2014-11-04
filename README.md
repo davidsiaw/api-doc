@@ -2,7 +2,7 @@ moCloud API Documentation
 =======
 
 Full Documentation:
-http://api.docs.mobingi.com
+http://mocloud.github.io/api-doc
 
 Endpoint:
 http://api.mocloud.mobingi.com/v1/
