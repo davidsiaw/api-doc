@@ -8,8 +8,8 @@
 
     <!-- Bootstrap -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet"> -->
     <link href="docs.min.css" rel="stylesheet">
+    <link href="prism.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,13 +77,15 @@
                   <li><a href="#menu-user-stacks">Get Running Stacks</a></li>
                   <li><a href="#menu-user-nodes">Get Running Nodes</a></li>
                   <li><a href="#menu-user-metrics">Get Metrics</a></li>
+                  <li><a href="#menu-user-stackstatus">Get Stack Status</a></li>
                 </ul>
               </li>
               <li>
-                <a href="#menu-stacks">Stacks</a>
+                <a href="#menu-stacks">Deployment</a>
                 <ul class="nav">
                   <li><a href="#menu-stack-create">Create Stack</a></li>
                   <li><a href="#menu-stack-update">Update Stack</a></li>
+                  <li><a href="#menu-stack-save">Save Stack</a></li>
                   <li><a href="#menu-stack-delete">Delete Stack</a></li>
                 </ul>
               </li>
@@ -118,7 +120,7 @@
           <p>Get user's total running stacks</p>
           GET <code>/user/{uid}/get/stacks</code>
           <p></p>
-          <p>Example return:</p>
+          <p>Example response:</p>
           <pre><code>{
     "stacks":"2"
 }</code></pre>
@@ -126,7 +128,7 @@
           <p>Get user's total running server nodes</p>
           GET <code>/user/{uid}/get/nodes</code>
           <p></p>
-          <p>Example return:</p>
+          <p>Example response:</p>
           <pre><code>{
     "nodes":"6"
 }</code></pre>
@@ -134,31 +136,66 @@
           <p>Get user's total running stacks, nodes & metrics</p>
           GET <code>/user/{uid}/get/metrics</code>
           <p></p>
-          <p>Example return:</p>
+          <p>Example response:</p>
           <pre><code>{
     "stacks":"2",
     "nodes":"6",
-    "cpuavg":"0.11",        //percentage %
+    "cpuavg":"0.11",        //average of all cpus' load in %
     "latency":"0.0000",     //seconds
     "maxnetworkin":"3",     //bytes
     "maxnetworkout":"3",    //bytes
     "sumrequests":"0",
     "statuscheckfailed":"0"
 }</code></pre>
+          <h3 id="menu-user-stackstatus">Get Stack Status</h3>
+          <p>Get user's stack status</p>
+          GET <code>/user/{uid}/get/stackstatus?stack_ids={id1},{id2}  HTTP/1.1</code>
+          <p></p>
+          <p>Example response:</p>
+          <pre><code>[
+    {
+        "mo-54477f1b43535-d3ubs3r7x":"DELETE_COMPLETE"
+    },
+    {
+        "mo-54477f1b43535-uo7enam02":"CREATE_COMPLETE"
+    }
+]</code></pre>
 
         </div>
 
         <div class="bs-docs-section">
           <h1 id="menu-stacks" class="page-header">Stacks</h1>
           <h3 id="menu-stack-create">Create Stack</h3>
-          <p>Create a new stack by passing in parameters</p>
-          <code>http://api.mocloud.mobingi.com/v1/stacks/{uid}/create</code>
+          <p>Create a new stack</p>
+          GET <code>/deploy/{uid}/{region}/stack/start?configurations={...}</code><p></p>
+          <p>Example parameters:</p>
+          <pre><code>{
+    "region":"ap-northeast-1",    // see full list of available regions
+    "architecture":"art_elb",     // or "art_single"
+    "os":"os_centos",
+    "software":[
+                  "sw_nginx",     // see full list of available software configurations
+                  "sw_ruby"
+                ],
+    "database":[
+                  "db_redis",     // see full list of available database configurations
+                  "db_mongodb"
+                ]
+}</code></pre>
+          <p></p>
+          <p>Example response:</p>
+          <pre><code>{
+    "status":"CREATE_IN_PROGRESS"
+}</code></pre>
           <h3 id="menu-stack-update">Update Stack</h3>
-          <p>Update a new stack by passing in parameters</p>
-          <code>http://api.mocloud.mobingi.com/v1/stacks/{uid}/update</code>
+          <p>Update an existing stack</p>
+          POST <code>/deploy/{uid}/{region}/stack/update</code>
+          <h3 id="menu-stack-save">Save Stack</h3>
+          <p>Save a stack's configuration</p>
+          POST <code>/deploy/{uid}/{region}/stack/save</code>
           <h3 id="menu-stack-delete">Delete Stack</h3>
-          <p>Delete a new stack by passing in parameters</p>
-          <code>http://api.mocloud.mobingi.com/v1/stacks/{uid}/delete</code>
+          <p>Delete an existing stack</p>
+          POST <code>/deploy/{uid}/{region}/stack/delete</code>
 
         </div>
 
@@ -186,8 +223,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  // <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
   <script src="docs.min.js"></script>
+  <script src="prism.js"></script>
 
   </body>
 </html>
