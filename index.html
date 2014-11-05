@@ -81,12 +81,18 @@
                 </ul>
               </li>
               <li>
-                <a href="#menu-stacks">Deployment</a>
+                <a href="#menu-stacks">Deploy</a>
                 <ul class="nav">
                   <li><a href="#menu-stack-create">Create Stack</a></li>
                   <li><a href="#menu-stack-update">Update Stack</a></li>
                   <li><a href="#menu-stack-save">Save Stack</a></li>
                   <li><a href="#menu-stack-delete">Delete Stack</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#menu-describe">Describe</a>
+                <ul class="nav">
+                  <li><a href="#menu-describe-stack">Describe Stack</a></li>
                 </ul>
               </li>
 
@@ -164,10 +170,10 @@
         </div>
 
         <div class="bs-docs-section">
-          <h1 id="menu-stacks" class="page-header">Stacks</h1>
+          <h1 id="menu-stacks" class="page-header">Deployment</h1>
           <h3 id="menu-stack-create">Create Stack</h3>
           <p>Create a new stack</p>
-          GET <code>/deploy/{uid}/{region}/stack/start?configurations={...}</code><p></p>
+          POST <code>/deploy/{uid}/{region}/stack/start?configurations={...}</code><p></p>
           <p>Example parameters:</p>
           <pre><code>{
     "region":"ap-northeast-1",    // see full list of available regions
@@ -185,8 +191,20 @@
           <p></p>
           <p>Example response:</p>
           <pre><code>{
+    "stack_name":"mo-54477f1b43535-s07cav0w4",
     "status":"CREATE_IN_PROGRESS"
 }</code></pre>
+          <p>Details:</p>
+          <p class="alert alert-info">
+
+              Parameter <kbd>architecture</kbd> has two values: <kbd>art_single</kbd> and <kbd>art_elb</kbd>.
+            <br /><br />
+            If you create a single structured stack there will be only one server node deployed and it cannot be scaled up or down.
+            <br /><br />
+            If you create a art_elb structured stack means you create server node(s) within a VPC with several subnets and with auto-scaling groups. You are able to scale up or down based on time or traffic triggers. You can specify the min and max number of server nodes.
+            <br />
+
+          </p>
           <h3 id="menu-stack-update">Update Stack</h3>
           <p>Update an existing stack</p>
           POST <code>/deploy/{uid}/{region}/stack/update</code>
@@ -196,6 +214,19 @@
           <h3 id="menu-stack-delete">Delete Stack</h3>
           <p>Delete an existing stack</p>
           POST <code>/deploy/{uid}/{region}/stack/delete</code>
+
+        </div>
+
+        <div class="bs-docs-section">
+          <h1 id="menu-describe" class="page-header">Describe</h1>
+          <h3 id="menu-describe-stacks">Describe Stacks</h3>
+          <p>Describe stack detailed information. If <kbd>stack_ids</kbd> is not passed, API will return all stacks information.</p>
+          GET <code>/describe/{uid}/stack</code>
+          <p></p>
+          <p>Example response:</p>
+          <pre><code>{
+    "stacks":"2"
+}</code></pre>
 
         </div>
 
