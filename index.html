@@ -95,6 +95,12 @@
                   <li><a href="#menu-describe-stack">Describe Stack</a></li>
                 </ul>
               </li>
+              <li>
+                <a href="#menu-misc">Miscellaneous</a>
+                <ul class="nav">
+                  <li><a href="#menu-misc-protips">Get Pro Tips</a></li>
+                </ul>
+              </li>
 
           </ul>
 
@@ -227,6 +233,20 @@
           <pre><code>{
     "stacks":"2"
 }</code></pre>
+
+        </div>
+
+        <div class="bs-docs-section">
+          <h1 id="menu-misc" class="page-header">Miscellaneous</h1>
+          <h3 id="menu-misc-protips">Get Pro Tips</h3>
+          <p>Get the Pro Tips tweets by Mobingi engineering team.</p>
+          GET <code>/misc/get/protips</code>
+          <p></p>
+          <p>Example response:</p>
+          <pre><code>[
+            {"created_at":"Tue Oct 21 23:57:00 +0000 2014","id":524710980039999488,"id_str":"524710980039999488","text":"Checkout Demo Day at #on_lab. We rocked the house. http:\/\/t.co\/XrGhO4vfFR","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"favorited":false,"retweeted":false,"possibly_sensitive":false,"lang":"en"},
+            {"created_at":"Mon Oct 06 07:03:01 +0000 2014","id":519019981351419904,"id_str":"519019981351419904","text":"Pro Tip: Fork any 3rd party repos &amp; copy other dependencies to S3. This will help avoid deployment failures due to external changes #AWS","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"favorited":false,"retweeted":false,"lang":"en"}
+]</code></pre>
 
         </div>
 
